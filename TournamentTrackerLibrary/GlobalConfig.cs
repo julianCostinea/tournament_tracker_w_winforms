@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 using TournamentTrackerLibrary.DataAccess;
+using TournamentTrackerLibrary.DataAccess.TextConnector;
 
 namespace TournamentTrackerLibrary
 {
