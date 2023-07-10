@@ -66,6 +66,34 @@ namespace TournamentTrackerLibrary.DataAccess.TextConnector
             return output;
         }
         
+        public static List<TeamModel> ConvertToTeamModels(this List<string> lines, string peopleFileName)
+        {
+            // id,team name,list of ids separated by the pipe
+            // 3,Tim's Team,1|3|5
+            List<TeamModel> output = new List<TeamModel>();
+            List<PersonModel> people = peopleFileName.FullFilePath().LoadFile().ConvertToPersonModels();
+            
+            foreach (string line in lines)
+            {
+                string[] cols = line.Split(',');
+                
+                TeamModel t = new TeamModel();
+                t.Id = int.Parse(cols[0]);
+                t.TeamName = cols[1];
+                
+                string[] personIds = cols[2].Split('|');
+                
+                foreach (string id in personIds)
+                {
+                    t.TeamMembers.Add(people.Where(x => x.Id == int.Parse(id)).First());
+                }
+                
+                output.Add(t);
+            }
+            
+            return output;
+        }
+
         public static void SaveToPrizeFile(this List<PrizeModel> models, string filename)
         {
             List<string> lines = new List<string>();
