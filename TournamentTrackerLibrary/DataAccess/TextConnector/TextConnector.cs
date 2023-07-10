@@ -36,5 +36,10 @@ namespace TournamentTrackerLibrary.DataAccess.TextConnector
             
             return model;
         }
+
+        public List<PersonModel> GetPerson_All()
+        {
+            return PeopleFile.FullFilePath().LoadFile().ConvertToPersonModels();
+        }
     }
 }

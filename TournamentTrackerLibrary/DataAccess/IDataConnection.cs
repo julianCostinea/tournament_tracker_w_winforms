@@ -1,4 +1,5 @@
-﻿using TournamentTrackerLibrary.Models;
+﻿using System.Collections.Generic;
+using TournamentTrackerLibrary.Models;
 
 namespace TournamentTrackerLibrary.DataAccess
 {
@@ -6,5 +7,6 @@ namespace TournamentTrackerLibrary.DataAccess
     {
         PrizeModel CreatePrize(PrizeModel model);
         PersonModel CreatePerson(PersonModel model);
+        List<PersonModel> GetPerson_All();
     }
 }
