@@ -57,5 +57,10 @@ namespace TournamentTrackerLibrary.DataAccess.TextConnector
             
             return model;
         }
+
+        public List<TeamModel> GetTeam_All()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
