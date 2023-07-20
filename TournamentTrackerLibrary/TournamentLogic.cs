@@ -17,7 +17,7 @@ namespace TournamentTrackerLibrary
 
             CreateOtherRounds(model, rounds);
 
-            UpdateTournamentResults(model);
+            // UpdateTournamentResults(model);
         }
 
         private static void CreateOtherRounds(TournamentModel model, int rounds)
@@ -25,26 +25,29 @@ namespace TournamentTrackerLibrary
             int round = 2;
             
             List<MatchupModel> previousRound = model.Rounds[0];
+            List<MatchupModel> currRound = new List<MatchupModel>();
+            MatchupModel currMatchup = new MatchupModel();
             
             while (round <= rounds)
             {
-                List<MatchupModel> currentRound = new List<MatchupModel>();
-                
-                foreach (MatchupModel matchup in previousRound)
+
+                foreach (MatchupModel match in previousRound)
                 {
-                    MatchupModel newMatchup = new MatchupModel();
+                    currMatchup.Entries.Add(new MatchupEntryModel {ParentMatchup = match});
                     
-                    foreach (MatchupEntryModel entry in matchup.Entries)
+                    if (currMatchup.Entries.Count > 1)
                     {
-                        newMatchup.Entries.Add(new MatchupEntryModel {ParentMatchup = entry});
+                        currMatchup.MatchupRound = round;
+                        currRound.Add(currMatchup);
+                        currMatchup = new MatchupModel();
                     }
-                    
-                    currentRound.Add(newMatchup);
                 }
                 
-                model.Rounds.Add(currentRound);
+                model.Rounds.Add(currRound);
+                previousRound = currRound;
+                
+                currRound = new List<MatchupModel>();
                 round += 1;
-                previousRound = currentRound;
             }
         }
 
