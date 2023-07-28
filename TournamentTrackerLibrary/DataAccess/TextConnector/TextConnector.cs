@@ -82,6 +82,11 @@ namespace TournamentTrackerLibrary.DataAccess.TextConnector
             
         }
 
+        public void UpdateMatchup(MatchupModel model)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<TournamentModel> GetTournament_All()
         {
             return TournamentFile.FullFilePath().LoadFile().ConvertToTournamentModels(TeamFile, PeopleFile, PrizesFile);

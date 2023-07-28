@@ -43,7 +43,7 @@
             this.createPrizeLabel.Location = new System.Drawing.Point(77, 95);
             this.createPrizeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.createPrizeLabel.Name = "createPrizeLabel";
-            this.createPrizeLabel.Size = new System.Drawing.Size(416, 51);
+            this.createPrizeLabel.Size = new System.Drawing.Size(1227, 149);
             this.createPrizeLabel.TabIndex = 13;
             this.createPrizeLabel.Text = "Tournament Dashboard";
             // 
@@ -53,7 +53,7 @@
             this.loadExistingTournamentDropDown.Location = new System.Drawing.Point(77, 276);
             this.loadExistingTournamentDropDown.Margin = new System.Windows.Forms.Padding(2);
             this.loadExistingTournamentDropDown.Name = "loadExistingTournamentDropDown";
-            this.loadExistingTournamentDropDown.Size = new System.Drawing.Size(502, 25);
+            this.loadExistingTournamentDropDown.Size = new System.Drawing.Size(502, 62);
             this.loadExistingTournamentDropDown.TabIndex = 20;
             this.loadExistingTournamentDropDown.SelectedIndexChanged += new System.EventHandler(this.loadExistingTournamentDropDown_SelectedIndexChanged);
             // 
@@ -65,7 +65,7 @@
             this.loadExistingTournamentLabel.Location = new System.Drawing.Point(79, 193);
             this.loadExistingTournamentLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.loadExistingTournamentLabel.Name = "loadExistingTournamentLabel";
-            this.loadExistingTournamentLabel.Size = new System.Drawing.Size(322, 37);
+            this.loadExistingTournamentLabel.Size = new System.Drawing.Size(953, 106);
             this.loadExistingTournamentLabel.TabIndex = 19;
             this.loadExistingTournamentLabel.Text = "Load Existing Tournament";
             // 
@@ -83,6 +83,7 @@
             this.loadTournamentButton.TabIndex = 21;
             this.loadTournamentButton.Text = "Load Tournament";
             this.loadTournamentButton.UseVisualStyleBackColor = true;
+            this.loadTournamentButton.Click += new System.EventHandler(this.loadTournamentButton_Click);
             // 
             // createTournamentButton
             // 
@@ -102,7 +103,7 @@
             // 
             // TournamentDashboardForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(22F, 54F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(790, 588);
