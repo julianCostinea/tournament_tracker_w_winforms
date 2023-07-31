@@ -11,7 +11,7 @@ namespace TournamentTrackerLibrary.DataAccess
     {
         private const string Db = "Tournaments";
 
-        public PrizeModel CreatePrize(PrizeModel model)
+        public void CreatePrize(PrizeModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(Db)))
             {
@@ -26,11 +26,10 @@ namespace TournamentTrackerLibrary.DataAccess
 
                 model.Id = p.Get<int>("@Id");
 
-                return model;
             }
         }
 
-        public PersonModel CreatePerson(PersonModel model)
+        public void CreatePerson(PersonModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(Db)))
             {
@@ -45,7 +44,6 @@ namespace TournamentTrackerLibrary.DataAccess
 
                 model.Id = p.Get<int>("@Id");
 
-                return model;
             }
         }
 
@@ -60,7 +58,7 @@ namespace TournamentTrackerLibrary.DataAccess
             return output;
         }
 
-        public TeamModel CreateTeam(TeamModel model)
+        public void CreateTeam(TeamModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(Db)))
             {
@@ -81,7 +79,6 @@ namespace TournamentTrackerLibrary.DataAccess
                     connection.Execute("dbo.spTeamMembers_Insert", p, commandType: CommandType.StoredProcedure);
                 }
 
-                return model;
             }
         }
 
@@ -295,10 +292,14 @@ namespace TournamentTrackerLibrary.DataAccess
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(Db)))
             { 
                 var p = new DynamicParameters();
-                p.Add("@Id", model.Id);
-                p.Add("@WinnerId", model.Winner.Id);
+                
+                if (model.Winner != null)
+                {
+                    p.Add("@Id", model.Id);
+                    p.Add("@WinnerId", model.Winner.Id);
 
-                connection.Execute("dbo.spMatchups_Update", p, commandType: CommandType.StoredProcedure);
+                    connection.Execute("dbo.spMatchups_Update", p, commandType: CommandType.StoredProcedure);
+                }
 
                 foreach (MatchupEntryModel entry in model.Entries)
                 {
