@@ -84,7 +84,7 @@ namespace TournamentTrackerLibrary.DataAccess.TextConnector
 
         public void UpdateMatchup(MatchupModel model)
         {
-            throw new System.NotImplementedException();
+            model.UpdateMatchupToFile();
         }
 
         public List<TournamentModel> GetTournament_All()
