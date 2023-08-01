@@ -68,6 +68,8 @@ namespace TournamentTrackerLibrary.DataAccess.TextConnector
             tournaments.Add(model);
 
             tournaments.SaveToTournamentFile();
+            
+            TournamentLogic.UpdateTournamentResults(model);
         }
 
         public void UpdateMatchup(MatchupModel model)

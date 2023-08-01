@@ -120,27 +120,27 @@ namespace TrackerUI
             // matchupsBinding.ResetBindings(false);
 
             // WireUpMatchupList();
-            
+
             if (selectedMatchups.Count > 0)
             {
                 LoadMatchup(selectedMatchups.First());
             }
-            
+
             DisplayMatchupInfo();
         }
-        
+
         private void DisplayMatchupInfo()
         {
             bool isVisible = (selectedMatchups.Count > 0);
-            
+
             teamOneName.Visible = isVisible;
             teamOneScoreLabel.Visible = isVisible;
             teamOneScoreValue.Visible = isVisible;
-            
+
             teamTwoName.Visible = isVisible;
             teamTwoScoreLabel.Visible = isVisible;
             teamTwoScoreValue.Visible = isVisible;
-            
+
             versusLabel.Visible = isVisible;
             scoreButton.Visible = isVisible;
         }
@@ -237,41 +237,18 @@ namespace TrackerUI
                     }
                 }
             }
+            
+            try
+            {
+                TournamentLogic.UpdateTournamentResults(tournament);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"The application had the following error: { ex.Message }");
+                return;
+            }
 
-            if (teamOneScore > teamTwoScore)
-            {
-                m.Winner = m.Entries[0].TeamCompeting;
-            }
-            else if (teamTwoScore > teamOneScore)
-            {
-                m.Winner = m.Entries[1].TeamCompeting;
-            }
-            else
-            {
-                MessageBox.Show("Ties are not allowed in this application.");
-            }
-            
-            foreach (List<MatchupModel> round in tournament.Rounds)
-            {
-                foreach (MatchupModel rm in round)
-                {
-                    foreach (MatchupEntryModel me in rm.Entries)
-                    {
-                        if (me.ParentMatchup != null)
-                        {
-                            if (me.ParentMatchup.Id == m.Id)
-                            {
-                                me.TeamCompeting = m.Winner;
-                                GlobalConfig.Connection.UpdateMatchup(rm);
-                            }
-                        }
-                    }
-                }
-            }
-            
             LoadMatchups((int)roundDropDown.SelectedItem);
-            
-            GlobalConfig.Connection.UpdateMatchup(m);
         }
     }
 }

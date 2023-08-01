@@ -110,6 +110,8 @@ namespace TournamentTrackerLibrary.DataAccess
                 SaveTournamentPrizes(connection, model);
                 SaveTournamentEntries(connection, model);
                 SaveTournamentRounds(connection, model);
+                
+                TournamentLogic.UpdateTournamentResults(model);
             }
         }
 

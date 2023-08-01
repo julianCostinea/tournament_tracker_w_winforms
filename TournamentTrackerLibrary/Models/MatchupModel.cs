@@ -15,17 +15,18 @@ namespace TournamentTrackerLibrary.Models
             get
             {
                 string output = "";
-                foreach (MatchupEntryModel entry in Entries)
+
+                foreach (MatchupEntryModel me in Entries)
                 {
-                    if (entry.TeamCompeting != null)
+                    if (me.TeamCompeting != null)
                     {
                         if (output.Length == 0)
                         {
-                            output = entry.TeamCompeting.TeamName;
+                            output = me.TeamCompeting.TeamName;
                         }
                         else
                         {
-                            output += $" vs. {entry.TeamCompeting.TeamName}";
+                            output += $" vs. { me.TeamCompeting.TeamName }";
                         }
                     }
                     else
