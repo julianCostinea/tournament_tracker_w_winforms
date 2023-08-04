@@ -77,6 +77,18 @@ namespace TournamentTrackerLibrary.DataAccess.TextConnector
             model.UpdateMatchupToFile();
         }
 
+        public void CompleteTournament(TournamentModel model)
+        {
+            List<TournamentModel> tournaments = GlobalConfig.TournamentFile.FullFilePath().LoadFile()
+                .ConvertToTournamentModels();
+
+            tournaments.Remove(model);
+
+            tournaments.SaveToTournamentFile();
+
+            TournamentLogic.UpdateTournamentResults(model);
+        }
+
         public List<TournamentModel> GetTournament_All()
         {
             return GlobalConfig.TournamentFile.FullFilePath().LoadFile()

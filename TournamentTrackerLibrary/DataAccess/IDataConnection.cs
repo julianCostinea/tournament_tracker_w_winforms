@@ -12,6 +12,7 @@ namespace TournamentTrackerLibrary.DataAccess
         List<TeamModel> GetTeam_All();
         void CreateTournament(TournamentModel model);
         void UpdateMatchup(MatchupModel model);
+        void CompleteTournament(TournamentModel model);
         List<TournamentModel> GetTournament_All();
     }
 }

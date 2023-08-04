@@ -115,6 +115,17 @@ namespace TournamentTrackerLibrary.DataAccess
             }
         }
 
+        public void CompleteTournament(TournamentModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(Db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id", model.Id);
+
+                connection.Execute("dbo.spTournaments_Complete", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
         public List<TournamentModel> GetTournament_All()
         {
             List<TournamentModel> output;
